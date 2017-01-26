@@ -1,4 +1,4 @@
-package com.haikuMasterTrainingDataPostProcessor.factory;
+package com.haikuMasterTrainingDataPostProcessor;
 
 import com.haikuMasterTrainingDataPostProcessor.data.TokenVectorData;
 import com.haikuMasterTrainingDataPostProcessor.data.TrainingDataRow;

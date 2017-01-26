@@ -1,8 +1,8 @@
-package com.haikuMasterTrainingDataPostProcessor;
+package com.haikuMasterTrainingDataPostProcessor.factory;
 
+import com.haikuMasterTrainingDataPostProcessor.TrainingDataRowFactory;
+import com.haikuMasterTrainingDataPostProcessor.TrainingDataRowFactoryImpl;
 import com.haikuMasterTrainingDataPostProcessor.data.TrainingDataRow;
-import com.haikuMasterTrainingDataPostProcessor.factory.TrainingDataRowFactory;
-import com.haikuMasterTrainingDataPostProcessor.factory.TrainingDataRowFactoryImpl;
 import org.junit.Before;
 import org.junit.Test;
 
