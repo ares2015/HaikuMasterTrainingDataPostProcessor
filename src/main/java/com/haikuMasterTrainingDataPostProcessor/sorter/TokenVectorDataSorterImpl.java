@@ -23,7 +23,7 @@ public class TokenVectorDataSorterImpl implements TokenVectorDataSorter {
                 Map.Entry tokenVectorMapPair = (Map.Entry) tokenVectorDataMapIterator.next();
                 TokenVectorData tokenVectorData = (TokenVectorData) tokenVectorMapPair.getValue();
                 tokenVectorDataList.add(tokenVectorData);
-//                System.out.println(keyToken + " -> " + tokenVectorData.getToken() + " " + tokenVectorData.getVector());
+                System.out.println(keyToken + " -> " + tokenVectorData.getToken() + " " + tokenVectorData.getVector());
             }
             Collections.sort(tokenVectorDataList, (o1, o2) -> {
                 if (o1.getVector() > o2.getVector()) {
