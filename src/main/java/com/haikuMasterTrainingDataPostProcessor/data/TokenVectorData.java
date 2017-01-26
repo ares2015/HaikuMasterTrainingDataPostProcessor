@@ -24,4 +24,5 @@ public class TokenVectorData {
     public void setVector(double vector) {
         this.vector = vector;
     }
+
 }
