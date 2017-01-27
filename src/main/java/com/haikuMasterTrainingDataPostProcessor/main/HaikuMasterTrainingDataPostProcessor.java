@@ -1,8 +1,8 @@
 package com.haikuMasterTrainingDataPostProcessor.main;
 
-import com.haikuMasterTrainingDataPostProcessor.TrainingDataRowFactory;
-import com.haikuMasterTrainingDataPostProcessor.TrainingDataRowFactoryImpl;
 import com.haikuMasterTrainingDataPostProcessor.data.TokenVectorData;
+import com.haikuMasterTrainingDataPostProcessor.factories.TrainingDataRowFactory;
+import com.haikuMasterTrainingDataPostProcessor.factories.TrainingDataRowFactoryImpl;
 import com.haikuMasterTrainingDataPostProcessor.merger.TokenVectorDataMerger;
 import com.haikuMasterTrainingDataPostProcessor.merger.TokenVectorDataMergerImpl;
 import com.haikuMasterTrainingDataPostProcessor.sorter.TokenVectorDataSorter;

@@ -1,8 +1,8 @@
 package com.haikuMasterTrainingDataPostProcessor.merger;
 
-import com.haikuMasterTrainingDataPostProcessor.TrainingDataRowFactory;
 import com.haikuMasterTrainingDataPostProcessor.data.TokenVectorData;
 import com.haikuMasterTrainingDataPostProcessor.data.TrainingDataRow;
+import com.haikuMasterTrainingDataPostProcessor.factories.TrainingDataRowFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
