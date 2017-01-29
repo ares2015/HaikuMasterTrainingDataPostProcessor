@@ -16,8 +16,28 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="trainingDataDatabaseAccessor" class="com.haikuMasterTrainingDataPostProcessor.database.TrainingDataDatabaseAccessorImpl">
-        <constructor-arg ref="jdbcTemplate"/>
+    <bean id="databaseListFactory" class="com.haikuMasterTrainingDataPostProcessor.factories.DatabaseListFactoryImpl"/>
+
+    <bean id="trainingDataRowFactory" class="com.haikuMasterTrainingDataPostProcessor.factories.TrainingDataRowFactoryImpl"/>
+
+    <bean id="merger" class="com.haikuMasterTrainingDataPostProcessor.merger.TokenVectorDataMergerImpl">
+        <constructor-arg ref="trainingDataRowFactory"/>
     </bean>
+
+    <bean id="sorter" class="com.haikuMasterTrainingDataPostProcessor.sorter.TokenVectorDataSorterImpl"/>
+
+    <bean id="trainingDataDatabaseAccessor"
+          class="com.haikuMasterTrainingDataPostProcessor.database.TrainingDataDatabaseAccessorImpl">
+        <constructor-arg ref="jdbcTemplate"/>
+        <constructor-arg ref="databaseListFactory"/>
+    </bean>
+
+    <bean id="trainingDataPostProcessor"
+          class="com.haikuMasterTrainingDataPostProcessor.main.HaikuMasterTrainingDataPostProcessor">
+        <constructor-arg ref="merger"/>
+        <constructor-arg ref="sorter"/>
+        <constructor-arg ref="trainingDataDatabaseAccessor"/>
+    </bean>
+
 
 </beans>
