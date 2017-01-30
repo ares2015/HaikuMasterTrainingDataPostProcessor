@@ -17,13 +17,11 @@ import java.util.Map;
  */
 public class HaikuMasterTrainingDataPostProcessor {
 
-//    private ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    public TokenVectorDataMerger tokenVectorDataMerger;
 
-    private TokenVectorDataMerger tokenVectorDataMerger;
+    public TokenVectorDataSorter tokenVectorDataSorter;
 
-    private TokenVectorDataSorter tokenVectorDataSorter;
-
-    private TrainingDataDatabaseAccessor trainingDataDatabaseAccessor;
+    public TrainingDataDatabaseAccessor trainingDataDatabaseAccessor;
 
     public HaikuMasterTrainingDataPostProcessor(TokenVectorDataMerger tokenVectorDataMerger, TokenVectorDataSorter tokenVectorDataSorter,
                                                 TrainingDataDatabaseAccessor trainingDataDatabaseAccessor) {
@@ -32,33 +30,26 @@ public class HaikuMasterTrainingDataPostProcessor {
         this.trainingDataDatabaseAccessor = trainingDataDatabaseAccessor;
     }
 
-    public TokenVectorDataMerger getTokenVectorDataMerger() {
-        return tokenVectorDataMerger;
-    }
-
-    public TokenVectorDataSorter getTokenVectorDataSorter() {
-        return tokenVectorDataSorter;
-    }
-
-    public TrainingDataDatabaseAccessor getTrainingDataDatabaseAccessor() {
-        return trainingDataDatabaseAccessor;
-    }
-
     public static void main(String[] args) throws IOException {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
         HaikuMasterTrainingDataPostProcessor trainingDataPostProcessor = (HaikuMasterTrainingDataPostProcessor) context.getBean("trainingDataPostProcessor");
-
-        Map<String, Map<String, TokenVectorData>> mergedData = trainingDataPostProcessor.getTokenVectorDataMerger().merge();
-        Map<String, List<TokenVectorData>> sortedData = trainingDataPostProcessor.getTokenVectorDataSorter().sort(mergedData);
+        long startTime = System.currentTimeMillis();
+        Map<String, Map<String, TokenVectorData>> mergedData = trainingDataPostProcessor.tokenVectorDataMerger.merge();
+        Map<String, List<TokenVectorData>> sortedData = trainingDataPostProcessor.tokenVectorDataSorter.sort(mergedData);
+        trainingDataPostProcessor.trainingDataDatabaseAccessor.clearDatabase();
         Iterator it = sortedData.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             String keyToken = (String) pair.getKey();
             List<TokenVectorData> list = (List<TokenVectorData>) pair.getValue();
-            trainingDataPostProcessor.getTrainingDataDatabaseAccessor().insertTokenWord2VecData(keyToken, list);
+            trainingDataPostProcessor.trainingDataDatabaseAccessor.insertTokenWord2VecData(keyToken, list);
         }
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println(sortedData.size() + " of key tokens processed in " + (elapsedTime / 1000) / 60 + " minutes and "
+                + (elapsedTime / 1000) % 60 + " seconds");
     }
 
 }

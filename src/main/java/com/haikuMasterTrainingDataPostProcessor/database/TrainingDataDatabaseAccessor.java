@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface TrainingDataDatabaseAccessor {
 
+    void clearDatabase();
+
     void insertTokenWord2VecData(String keyToken, List<TokenVectorData> tokenVectorDataList);
 
 }

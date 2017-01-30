@@ -21,6 +21,12 @@ public class TrainingDataDatabaseAccessorImpl implements TrainingDataDatabaseAcc
     }
 
     @Override
+    public void clearDatabase() {
+        String sqlDelete = "DELETE FROM jos_haiku_master_word2vec_model WHERE 1";
+        jdbcTemplate.update(sqlDelete);
+    }
+
+    @Override
     public void insertTokenWord2VecData(String keyToken, List<TokenVectorData> tokenVectorDataList) {
         List<String> databaseList = databaseListFactory.create(tokenVectorDataList);
         System.out.println("Inserting -> keyToken: " + keyToken + " -> " + databaseList.get(0) + " | "
