@@ -6,11 +6,11 @@ import java.util.List;
 /**
  * Created by oliver.eder on 1/24/2017.
  */
-public class TrainingDataRow {
+public class Word2VecTrainingDataRow {
 
     private String keyToken;
 
-    private List<TokenVectorData> tokenVectorDataList = new ArrayList<>();
+    private List<Word2VecData> word2VecDataList = new ArrayList<>();
 
     public String getKeyToken() {
         return keyToken;
@@ -20,11 +20,12 @@ public class TrainingDataRow {
         this.keyToken = keyToken;
     }
 
-    public List<TokenVectorData> getTokenVectorDataList() {
-        return tokenVectorDataList;
+    public List<Word2VecData> getWord2VecDataList() {
+        return word2VecDataList;
     }
 
-    public void setTokenVectorDataList(List<TokenVectorData> tokenVectorDataList) {
-        this.tokenVectorDataList = tokenVectorDataList;
+    public void setWord2VecDataList(List<Word2VecData> word2VecDataList) {
+        this.word2VecDataList = word2VecDataList;
     }
+
 }

@@ -1,6 +1,6 @@
 package com.haikuMasterTrainingDataPostProcessor.database;
 
-import com.haikuMasterTrainingDataPostProcessor.data.TokenVectorData;
+import com.haikuMasterTrainingDataPostProcessor.data.Word2VecData;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface TrainingDataDatabaseAccessor {
 
-    void clearDatabase();
+    void clearWord2VecDatabase();
 
-    void insertTokenWord2VecData(String keyToken, List<TokenVectorData> tokenVectorDataList);
+    void insertWord2VecData(String keyToken, List<Word2VecData> word2VecDataList);
 
 }

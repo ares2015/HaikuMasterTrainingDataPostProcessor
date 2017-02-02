@@ -3,7 +3,7 @@ package com.haikuMasterTrainingDataPostProcessor.data;
 /**
  * Created by oliver.eder on 1/24/2017.
  */
-public class TokenVectorData {
+public class Word2VecData {
 
     private String token;
 

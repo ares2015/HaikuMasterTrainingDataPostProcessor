@@ -16,20 +16,20 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="databaseListFactory" class="com.haikuMasterTrainingDataPostProcessor.factories.DatabaseListFactoryImpl"/>
+    <bean id="word2VecDatabaseListFactory" class="com.haikuMasterTrainingDataPostProcessor.word2vec.factories.Word2VecDatabaseListFactoryImpl"/>
 
-    <bean id="trainingDataRowFactory" class="com.haikuMasterTrainingDataPostProcessor.factories.TrainingDataRowFactoryImpl"/>
+    <bean id="word2VecTrainingDataRowFactory" class="com.haikuMasterTrainingDataPostProcessor.word2vec.factories.Word2VecTrainingDataRowFactoryImpl"/>
 
-    <bean id="merger" class="com.haikuMasterTrainingDataPostProcessor.merger.TokenVectorDataMergerImpl">
-        <constructor-arg ref="trainingDataRowFactory"/>
+    <bean id="merger" class="com.haikuMasterTrainingDataPostProcessor.word2vec.merger.Word2VecDataMergerImpl">
+        <constructor-arg ref="word2VecTrainingDataRowFactory"/>
     </bean>
 
-    <bean id="sorter" class="com.haikuMasterTrainingDataPostProcessor.sorter.TokenVectorDataSorterImpl"/>
+    <bean id="sorter" class="com.haikuMasterTrainingDataPostProcessor.word2vec.sorter.Word2VecDataSorterImpl"/>
 
     <bean id="trainingDataDatabaseAccessor"
           class="com.haikuMasterTrainingDataPostProcessor.database.TrainingDataDatabaseAccessorImpl">
         <constructor-arg ref="jdbcTemplate"/>
-        <constructor-arg ref="databaseListFactory"/>
+        <constructor-arg ref="word2VecDatabaseListFactory"/>
     </bean>
 
     <bean id="trainingDataPostProcessor"

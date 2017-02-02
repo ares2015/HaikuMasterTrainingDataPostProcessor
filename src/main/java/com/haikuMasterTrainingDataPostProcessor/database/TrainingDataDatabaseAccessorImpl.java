@@ -1,7 +1,7 @@
 package com.haikuMasterTrainingDataPostProcessor.database;
 
-import com.haikuMasterTrainingDataPostProcessor.data.TokenVectorData;
-import com.haikuMasterTrainingDataPostProcessor.factories.DatabaseListFactory;
+import com.haikuMasterTrainingDataPostProcessor.data.Word2VecData;
+import com.haikuMasterTrainingDataPostProcessor.word2vec.factories.Word2VecDatabaseListFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -13,22 +13,22 @@ public class TrainingDataDatabaseAccessorImpl implements TrainingDataDatabaseAcc
 
     private JdbcTemplate jdbcTemplate;
 
-    private DatabaseListFactory databaseListFactory;
+    private Word2VecDatabaseListFactory word2VecDatabaseListFactory;
 
-    public TrainingDataDatabaseAccessorImpl(final JdbcTemplate jdbcTemplate, DatabaseListFactory databaseListFactory) {
+    public TrainingDataDatabaseAccessorImpl(final JdbcTemplate jdbcTemplate, Word2VecDatabaseListFactory word2VecDatabaseListFactory) {
         this.jdbcTemplate = jdbcTemplate;
-        this.databaseListFactory = databaseListFactory;
+        this.word2VecDatabaseListFactory = word2VecDatabaseListFactory;
     }
 
     @Override
-    public void clearDatabase() {
+    public void clearWord2VecDatabase() {
         String sqlDelete = "DELETE FROM jos_haiku_master_word2vec_model WHERE 1";
         jdbcTemplate.update(sqlDelete);
     }
 
     @Override
-    public void insertTokenWord2VecData(String keyToken, List<TokenVectorData> tokenVectorDataList) {
-        List<String> databaseList = databaseListFactory.create(tokenVectorDataList);
+    public void insertWord2VecData(String keyToken, List<Word2VecData> word2VecDataList) {
+        List<String> databaseList = word2VecDatabaseListFactory.create(word2VecDataList);
         System.out.println("Inserting -> keyToken: " + keyToken + " -> " + databaseList.get(0) + " | "
                 + databaseList.get(1) + " | "
                 + databaseList.get(2) + " | "
