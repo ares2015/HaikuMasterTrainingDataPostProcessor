@@ -26,6 +26,7 @@ public class TokenTagDataPostProcessorImpl implements TokenTagDataPostProcessor,
     public void postProcess() throws IOException {
         long startTime = System.currentTimeMillis();
         Map<String, TokenTagData> mergedData = tokenTagDataMerger.merge();
+        trainingDataDatabaseAccessor.clearTokenTagDataDatabase();
         Iterator it = mergedData.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
