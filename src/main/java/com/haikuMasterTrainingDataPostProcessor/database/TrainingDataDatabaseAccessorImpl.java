@@ -1,5 +1,6 @@
 package com.haikuMasterTrainingDataPostProcessor.database;
 
+import com.haikuMasterTrainingDataPostProcessor.data.TokenTagData;
 import com.haikuMasterTrainingDataPostProcessor.data.Word2VecData;
 import com.haikuMasterTrainingDataPostProcessor.word2vec.factories.Word2VecDatabaseListFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +24,12 @@ public class TrainingDataDatabaseAccessorImpl implements TrainingDataDatabaseAcc
     @Override
     public void clearWord2VecDatabase() {
         String sqlDelete = "DELETE FROM jos_haiku_master_word2vec_model WHERE 1";
+        jdbcTemplate.update(sqlDelete);
+    }
+
+    @Override
+    public void clearTokenTagDataDatabase() {
+        String sqlDelete = "DELETE FROM jos_haiku_master_token_tag_data WHERE 1";
         jdbcTemplate.update(sqlDelete);
     }
 
@@ -95,4 +102,12 @@ public class TrainingDataDatabaseAccessorImpl implements TrainingDataDatabaseAcc
                 databaseList.get(19)
         });
     }
+
+    @Override
+    public void insertTokenTagData(TokenTagData tokenTagData) {
+        String sql = "insert into jos_haiku_master_token_tag_data (token, is_noun, is_verb, is_adjective, is_adverb) values (?,?,?,?,?)";
+        jdbcTemplate.update(sql, new Object[]{tokenTagData.getToken(), tokenTagData.isNoun(),
+                tokenTagData.isVerb(), tokenTagData.isAdjective(), tokenTagData.isAdverb()});
+    }
+
 }

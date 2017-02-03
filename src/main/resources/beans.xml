@@ -19,6 +19,8 @@
     <bean id="word2VecDatabaseListFactory"
           class="com.haikuMasterTrainingDataPostProcessor.word2vec.factories.Word2VecDatabaseListFactoryImpl"/>
 
+    <bean id="tokenTagDataMerger" class="com.haikuMasterTrainingDataPostProcessor.tags.merger.TokenTagDataMergerImpl"/>
+
     <bean id="word2VecTrainingDataRowFactory"
           class="com.haikuMasterTrainingDataPostProcessor.word2vec.factories.Word2VecTrainingDataRowFactoryImpl"/>
 
