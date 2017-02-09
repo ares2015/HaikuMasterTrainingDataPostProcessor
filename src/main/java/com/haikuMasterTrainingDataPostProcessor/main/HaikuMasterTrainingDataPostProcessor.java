@@ -19,17 +19,23 @@ import java.util.concurrent.Future;
  */
 public class HaikuMasterTrainingDataPostProcessor {
 
+    private TrainingDataDatabaseAccessor trainingDataDatabaseAccessor;
 
-    public static void main(String[] args) throws IOException {
+    private Word2VecDataMerger word2VecDataMerger;
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    private Word2VecDataSorter word2vecSorter;
 
-        TrainingDataDatabaseAccessor trainingDataDatabaseAccessor = (TrainingDataDatabaseAccessor) context.getBean("trainingDataDatabaseAccessor");
-        Word2VecDataMerger word2VecDataMerger = (Word2VecDataMerger) context.getBean("word2vecMerger");
-        Word2VecDataSorter word2vecSorter = (Word2VecDataSorter) context.getBean("word2vecSorter");
+    private TokenTagDataMerger tokenTagDataMerger;
 
-        TokenTagDataMerger tokenTagDataMerger = (TokenTagDataMerger) context.getBean("tokenTagDataMerger");
+    public HaikuMasterTrainingDataPostProcessor(TrainingDataDatabaseAccessor trainingDataDatabaseAccessor, Word2VecDataMerger word2VecDataMerger,
+                                                Word2VecDataSorter word2vecSorter, TokenTagDataMerger tokenTagDataMerger) {
+        this.trainingDataDatabaseAccessor = trainingDataDatabaseAccessor;
+        this.word2VecDataMerger = word2VecDataMerger;
+        this.word2vecSorter = word2vecSorter;
+        this.tokenTagDataMerger = tokenTagDataMerger;
+    }
 
+    public void postProcess() {
         boolean areDataProcessed = false;
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -49,9 +55,16 @@ public class HaikuMasterTrainingDataPostProcessor {
             executor.shutdown();
             long stopTime = System.currentTimeMillis();
             long elapsedTime = stopTime - startTime;
-            System.out.println("Training data processed in " + elapsedTime / 1000 + " seconds / in " + (elapsedTime / 1000) / 60 +
-                    +(elapsedTime / 1000) % 60 + " seconds");
+            System.out.println("Training data processed in " + (elapsedTime / 1000) / 60 + " minutes and "
+                    + +(elapsedTime / 1000) % 60 + " seconds");
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        HaikuMasterTrainingDataPostProcessor haikuMasterTrainingDataPostProcessor = (HaikuMasterTrainingDataPostProcessor) context.getBean("haikuMasterTrainingDataPostProcessor");
+        haikuMasterTrainingDataPostProcessor.postProcess();
+
     }
 
 }

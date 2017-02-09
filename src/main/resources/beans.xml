@@ -36,5 +36,13 @@
         <constructor-arg ref="word2VecDatabaseListFactory"/>
     </bean>
 
+    <bean id="haikuMasterTrainingDataPostProcessor"
+          class="com.haikuMasterTrainingDataPostProcessor.main.HaikuMasterTrainingDataPostProcessor">
+        <constructor-arg ref="trainingDataDatabaseAccessor"/>
+        <constructor-arg ref="word2vecMerger"/>
+        <constructor-arg ref="word2vecSorter"/>
+        <constructor-arg ref="tokenTagDataMerger"/>
+    </bean>
+
 
 </beans>
