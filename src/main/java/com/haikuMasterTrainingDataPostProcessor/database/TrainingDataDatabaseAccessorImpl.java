@@ -106,6 +106,7 @@ public class TrainingDataDatabaseAccessorImpl implements TrainingDataDatabaseAcc
     @Override
     public void insertTokenTagData(TokenTagData tokenTagData) {
         String sql = "insert into jos_haiku_master_token_tag_data (token, is_noun, is_verb, is_adjective, is_adverb) values (?,?,?,?,?)";
+        System.out.println("Inserting token: " + tokenTagData.getToken());
         jdbcTemplate.update(sql, new Object[]{tokenTagData.getToken(), tokenTagData.isNoun(),
                 tokenTagData.isVerb(), tokenTagData.isAdjective(), tokenTagData.isAdverb()});
     }

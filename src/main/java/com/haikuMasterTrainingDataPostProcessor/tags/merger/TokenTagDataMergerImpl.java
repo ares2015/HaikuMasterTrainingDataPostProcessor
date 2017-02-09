@@ -32,6 +32,7 @@ public class TokenTagDataMergerImpl implements TokenTagDataMerger {
             } else {
                 TokenTagData tokenTagData = new TokenTagData();
                 convertStringTagToBoolean(tokenTagData, tag);
+                tokenTagData.setToken(token);
                 mergedData.put(token, tokenTagData);
             }
             rowsCount++;
