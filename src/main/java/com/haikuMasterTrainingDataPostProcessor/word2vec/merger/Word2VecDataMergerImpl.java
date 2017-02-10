@@ -7,6 +7,7 @@ import com.haikuMasterTrainingDataPostProcessor.word2vec.factories.Word2VecTrain
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ public class Word2VecDataMergerImpl implements Word2VecDataMerger {
     }
 
     @Override
+
     public Map<String, Map<String, Word2VecData>> merge() throws IOException {
         Map<String, Map<String, Word2VecData>> mergedData = new HashMap<>();
         BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
@@ -37,6 +39,8 @@ public class Word2VecDataMergerImpl implements Word2VecDataMerger {
             }
             trainingDataRowAsString = br.readLine();
         }
+        PrintWriter pw = new PrintWriter("C:\\Users\\Oliver\\Documents\\NlpTrainingData\\Word2VecModelData.txt");
+        pw.close();
         return mergedData;
     }
 

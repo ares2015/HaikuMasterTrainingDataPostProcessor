@@ -5,6 +5,7 @@ import com.haikuMasterTrainingDataPostProcessor.data.TokenTagData;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +39,8 @@ public class TokenTagDataMergerImpl implements TokenTagDataMerger {
             rowsCount++;
             trainingDataRowAsString = br.readLine();
         }
+        PrintWriter pw = new PrintWriter("C:\\Users\\Oliver\\Documents\\NlpTrainingData\\TokenTagData.txt");
+        pw.close();
         return mergedData;
     }
 
