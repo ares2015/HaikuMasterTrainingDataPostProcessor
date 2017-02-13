@@ -35,7 +35,7 @@ public class HaikuMasterTrainingDataPostProcessor {
         this.tokenTagDataMerger = tokenTagDataMerger;
     }
 
-    public void postProcess() {
+    public void postProcess() throws IOException {
         boolean areDataProcessed = false;
 
         ExecutorService executor = Executors.newFixedThreadPool(2);

@@ -31,7 +31,7 @@ public class TokenTagDataPostProcessorImpl implements TokenTagDataPostProcessor,
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             TokenTagData tokenTagData = (TokenTagData) pair.getValue();
-            trainingDataDatabaseAccessor.insertTokenTagData(tokenTagData);
+//            trainingDataDatabaseAccessor.insertTokenTagData(tokenTagData);
         }
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;

@@ -77,8 +77,43 @@ public class TrainingDataDatabaseAccessorImpl implements TrainingDataDatabaseAcc
                 "neighbour17, " +
                 "neighbour18, " +
                 "neighbour19, " +
-                "neighbour20) " +
-                "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                "neighbour20, " +
+                "neighbour21, " +
+                "neighbour22, " +
+                "neighbour23, " +
+                "neighbour24, " +
+                "neighbour25, " +
+                "neighbour26, " +
+                "neighbour27, " +
+                "neighbour28, " +
+                "neighbour29, " +
+                "neighbour30, " +
+                "neighbour31, " +
+                "neighbour32, " +
+                "neighbour33, " +
+                "neighbour34, " +
+                "neighbour35, " +
+                "neighbour36, " +
+                "neighbour37, " +
+                "neighbour38, " +
+                "neighbour39, " +
+                "neighbour40, " +
+                "neighbour41, " +
+                "neighbour42, " +
+                "neighbour43, " +
+                "neighbour44, " +
+                "neighbour45, " +
+                "neighbour46, " +
+                "neighbour47, " +
+                "neighbour48, " +
+                "neighbour49," +
+                "neighbour50) " +
+                "values (?," +
+                "?,?,?,?,?,?,?,?,?,?," +
+                "?,?,?,?,?,?,?,?,?,?," +
+                "?,?,?,?,?,?,?,?,?,?," +
+                "?,?,?,?,?,?,?,?,?,?," +
+                "?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, new Object[]{keyToken,
                 databaseList.get(0),
                 databaseList.get(1),
@@ -99,7 +134,37 @@ public class TrainingDataDatabaseAccessorImpl implements TrainingDataDatabaseAcc
                 databaseList.get(16),
                 databaseList.get(17),
                 databaseList.get(18),
-                databaseList.get(19)
+                databaseList.get(19),
+                databaseList.get(20),
+                databaseList.get(21),
+                databaseList.get(22),
+                databaseList.get(23),
+                databaseList.get(24),
+                databaseList.get(25),
+                databaseList.get(26),
+                databaseList.get(27),
+                databaseList.get(28),
+                databaseList.get(29),
+                databaseList.get(30),
+                databaseList.get(31),
+                databaseList.get(32),
+                databaseList.get(33),
+                databaseList.get(34),
+                databaseList.get(35),
+                databaseList.get(36),
+                databaseList.get(37),
+                databaseList.get(38),
+                databaseList.get(39),
+                databaseList.get(40),
+                databaseList.get(41),
+                databaseList.get(42),
+                databaseList.get(43),
+                databaseList.get(44),
+                databaseList.get(45),
+                databaseList.get(46),
+                databaseList.get(47),
+                databaseList.get(48),
+                databaseList.get(49),
         });
     }
 
