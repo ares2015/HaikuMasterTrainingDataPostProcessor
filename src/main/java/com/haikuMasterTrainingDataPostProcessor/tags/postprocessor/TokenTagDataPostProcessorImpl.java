@@ -36,7 +36,8 @@ public class TokenTagDataPostProcessorImpl implements TokenTagDataPostProcessor,
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println(mergedData.size() + " of tokenTagData training data rows processed in " + (elapsedTime / 1000) / 60 + " minutes and "
-                + (elapsedTime / 1000) % 60 + " seconds");
+                + (elapsedTime / 1000) % 60 +
+                " seconds");
     }
 
     @Override

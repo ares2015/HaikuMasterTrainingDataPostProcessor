@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class Word2VecDatabaseListFactoryImpl implements Word2VecDatabaseListFactory {
 
-    private final int VECTOR_SIZE = 50;
+    private final int VECTOR_SIZE = 309;
 
     @Override
     public List<String> create(List<Word2VecData> word2VecDatabaseList) {
         List<String> databaseList = new ArrayList<>(VECTOR_SIZE);
-        if (word2VecDatabaseList.size() < VECTOR_SIZE) {
+        if (word2VecDatabaseList.size() <= VECTOR_SIZE) {
             int listSize = word2VecDatabaseList.size();
             for (int i = 0; i < listSize; i++) {
                 databaseList.add(word2VecDatabaseList.get(i).getToken());
