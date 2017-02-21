@@ -28,8 +28,8 @@ public final class DatabaseUtil {
     public static Object[] createParameterObjectArray(String keyToken, List<String> databaseList) {
         Object[] parameterArray = new Object[310];
         parameterArray[0] = keyToken;
-        for (int i = 1; i <= 309; i++) {
-            parameterArray[i] = databaseList.get(0);
+        for (int i = 0; i <= 308; i++) {
+            parameterArray[i + 1] = databaseList.get(i);
         }
         return parameterArray;
     }

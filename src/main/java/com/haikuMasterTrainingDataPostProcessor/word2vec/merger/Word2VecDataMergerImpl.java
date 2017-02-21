@@ -31,6 +31,7 @@ public class Word2VecDataMergerImpl implements Word2VecDataMerger {
         BufferedReader br = new BufferedReader(new FileReader(inputFilePath));
         String trainingDataRowAsString = br.readLine();
         while (trainingDataRowAsString != null) {
+            System.out.println("Merging: " + trainingDataRowAsString);
             Word2VecTrainingDataRow word2VecTrainingDataRow = word2VecTrainingDataRowFactory.create(trainingDataRowAsString);
             List<Word2VecData> word2VecDataList = word2VecTrainingDataRow.getWord2VecDataList();
             for (Word2VecData word2VecData : word2VecDataList) {
@@ -46,6 +47,7 @@ public class Word2VecDataMergerImpl implements Word2VecDataMerger {
     private void populateMap(Map<String, Map<String, Word2VecData>> mergedData, String keyToken, Word2VecData word2VecData) {
         String token = word2VecData.getToken();
         double actualVector = word2VecData.getVector();
+        System.out.println("Merging: " + keyToken + " -> vector values: " + token + "*" + actualVector);
         if (mergedData.containsKey(keyToken)) {
             if (mergedData.get(keyToken).containsKey(token)) {
                 double vector = mergedData.get(keyToken).get(token).getVector();
