@@ -11,13 +11,14 @@ public final class DatabaseUtil {
         StringBuilder sql = new StringBuilder();
         sql.append("insert into jos_haiku_master_word2vec_model (token,");
         for (int i = 1; i <= 309; i++) {
-            sql.append("neighbour" + i + ",");
             if (i == 309) {
                 sql.append("neighbour" + i + ") ");
+            } else {
+                sql.append("neighbour" + i + ",");
             }
         }
         sql.append("values (");
-        for (int i = 1; i < 310; i++) {
+        for (int i = 1; i <= 309; i++) {
             sql.append("?, ");
         }
         sql.append("? )");
