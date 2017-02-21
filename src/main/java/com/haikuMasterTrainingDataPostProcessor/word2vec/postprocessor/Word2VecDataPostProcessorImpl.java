@@ -39,9 +39,11 @@ public class Word2VecDataPostProcessorImpl implements Word2VecDataPostProcessor,
             Map.Entry pair = (Map.Entry) it.next();
             String keyToken = (String) pair.getKey();
             List<Word2VecData> list = (List<Word2VecData>) pair.getValue();
-            trainingDataDatabaseAccessor.insertWord2VecData(keyToken, list);
+            try {
+                trainingDataDatabaseAccessor.insertWord2VecData(keyToken, list);
+            } catch (org.springframework.jdbc.CannotGetJdbcConnectionException ex) {
+            }
         }
-
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println(sortedData.size() + " of word2vec training data rows processed in " + (elapsedTime / 1000) / 60 + " minutes and "

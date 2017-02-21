@@ -27,11 +27,16 @@ public class TokenTagDataPostProcessorImpl implements TokenTagDataPostProcessor,
         long startTime = System.currentTimeMillis();
         Map<String, TokenTagData> mergedData = tokenTagDataMerger.merge();
         trainingDataDatabaseAccessor.clearTokenTagDataDatabase();
+
         Iterator it = mergedData.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             TokenTagData tokenTagData = (TokenTagData) pair.getValue();
-//            trainingDataDatabaseAccessor.insertTokenTagData(tokenTagData);
+            try {
+                trainingDataDatabaseAccessor.insertTokenTagData(tokenTagData);
+            } catch (org.springframework.jdbc.CannotGetJdbcConnectionException ex) {
+
+            }
         }
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
