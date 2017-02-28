@@ -3,10 +3,14 @@ package com.haikuMasterTrainingDataPostProcessor.tags.postprocessor;
 import com.haikuMasterTrainingDataPostProcessor.data.TokenTagData;
 import com.haikuMasterTrainingDataPostProcessor.database.TrainingDataDatabaseAccessor;
 import com.haikuMasterTrainingDataPostProcessor.tags.merger.TokenTagDataMerger;
+import com.haikuMasterTrainingDataPostProcessor.writer.TokenTagDataMergedWriterImpl;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by Oliver on 2/3/2017.
@@ -24,8 +28,14 @@ public class TokenTagDataPostProcessorImpl implements TokenTagDataPostProcessor,
 
     @Override
     public void postProcess() throws IOException {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
         long startTime = System.currentTimeMillis();
         Map<String, TokenTagData> mergedData = tokenTagDataMerger.merge();
+
+        Runnable tokenTagDataMergedWriter = new TokenTagDataMergedWriterImpl(mergedData);
+        Future<?> submit = executor.submit(tokenTagDataMergedWriter);
+
         trainingDataDatabaseAccessor.clearTokenTagDataDatabase();
 
         Iterator it = mergedData.entrySet().iterator();
@@ -33,7 +43,7 @@ public class TokenTagDataPostProcessorImpl implements TokenTagDataPostProcessor,
             Map.Entry pair = (Map.Entry) it.next();
             TokenTagData tokenTagData = (TokenTagData) pair.getValue();
             try {
-                trainingDataDatabaseAccessor.insertTokenTagData(tokenTagData);
+//                trainingDataDatabaseAccessor.insertTokenTagData(tokenTagData);
             } catch (org.springframework.jdbc.CannotGetJdbcConnectionException ex) {
 
             }

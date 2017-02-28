@@ -1,5 +1,8 @@
 package com.haikuMasterTrainingDataPostProcessor.data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Oliver on 2/3/2017.
  */
@@ -14,6 +17,8 @@ public class TokenTagData {
     private boolean isAdjective;
 
     private boolean isAdverb;
+
+    private Set<String> tags = new HashSet<String>();
 
     public String getToken() {
         return token;
@@ -53,5 +58,9 @@ public class TokenTagData {
 
     public void setAdverb(boolean adverb) {
         isAdverb = adverb;
+    }
+
+    public Set<String> getTags() {
+        return tags;
     }
 }

@@ -4,11 +4,15 @@ import com.haikuMasterTrainingDataPostProcessor.data.Word2VecData;
 import com.haikuMasterTrainingDataPostProcessor.database.TrainingDataDatabaseAccessor;
 import com.haikuMasterTrainingDataPostProcessor.word2vec.merger.Word2VecDataMerger;
 import com.haikuMasterTrainingDataPostProcessor.word2vec.sorter.Word2VecDataSorter;
+import com.haikuMasterTrainingDataPostProcessor.writer.Word2VecSortedDataWriterImpl;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by Oliver on 2/3/2017.
@@ -30,9 +34,12 @@ public class Word2VecDataPostProcessorImpl implements Word2VecDataPostProcessor,
 
     @Override
     public void postProcess() throws IOException {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
         long startTime = System.currentTimeMillis();
         Map<String, Map<String, Word2VecData>> mergedData = word2VecDataMerger.merge();
         Map<String, List<Word2VecData>> sortedData = word2VecDataSorter.sort(mergedData);
+        Runnable word2VecSortedDataWriter = new Word2VecSortedDataWriterImpl(sortedData);
+        Future<?> submit = executor.submit(word2VecSortedDataWriter);
         trainingDataDatabaseAccessor.clearWord2VecDatabase();
         Iterator it = sortedData.entrySet().iterator();
         while (it.hasNext()) {
@@ -40,7 +47,7 @@ public class Word2VecDataPostProcessorImpl implements Word2VecDataPostProcessor,
             String keyToken = (String) pair.getKey();
             List<Word2VecData> list = (List<Word2VecData>) pair.getValue();
             try {
-                trainingDataDatabaseAccessor.insertWord2VecData(keyToken, list);
+//                trainingDataDatabaseAccessor.insertWord2VecData(keyToken, list);
             } catch (org.springframework.jdbc.CannotGetJdbcConnectionException ex) {
             }
         }

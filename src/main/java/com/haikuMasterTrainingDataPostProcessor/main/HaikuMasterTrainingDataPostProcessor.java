@@ -58,6 +58,12 @@ public class HaikuMasterTrainingDataPostProcessor {
             System.out.println("Training data processed in " + (elapsedTime / 1000) / 60 + " minutes and "
                     + +(elapsedTime / 1000) % 60 + " seconds");
         }
+
+//        Word2VecDataPostProcessorImpl word2VecDataPostProcessor = new Word2VecDataPostProcessorImpl(word2VecDataMerger, word2vecSorter, trainingDataDatabaseAccessor);
+//        word2VecDataPostProcessor.postProcess();
+
+//        TokenTagDataPostProcessorImpl tokenTagDataPostProcessor = new TokenTagDataPostProcessorImpl(tokenTagDataMerger, trainingDataDatabaseAccessor);
+//        tokenTagDataPostProcessor.postProcess();
     }
 
     public static void main(String[] args) throws IOException {

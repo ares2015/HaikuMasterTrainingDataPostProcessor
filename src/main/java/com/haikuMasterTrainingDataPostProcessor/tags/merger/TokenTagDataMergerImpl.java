@@ -34,6 +34,7 @@ public class TokenTagDataMergerImpl implements TokenTagDataMerger {
                 convertStringTagToBoolean(tokenTagData, tag);
                 tokenTagData.setToken(token);
                 mergedData.put(token, tokenTagData);
+                tokenTagData.getTags().add(tag);
             }
             rowsCount++;
             trainingDataRowAsString = br.readLine();
@@ -53,6 +54,7 @@ public class TokenTagDataMergerImpl implements TokenTagDataMerger {
         } else if ("AV".equals(tag)) {
             tokenTagData.setAdverb(true);
         }
+        tokenTagData.getTags().add(tag);
     }
 
 }
