@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class Word2VecDataMergerImpl implements Word2VecDataMerger {
 
-    private String inputFilePath = "C:\\Users\\Oliver\\Documents\\NlpTrainingData\\Word2VecModelData.txt";
+    private String inputFilePath = "C:\\Users\\Oliver\\Documents\\NlpTrainingData\\HaikuMasterTrainingData\\Word2VecModelData.txt";
 
     private Word2VecTrainingDataRowFactory word2VecTrainingDataRowFactory;
 

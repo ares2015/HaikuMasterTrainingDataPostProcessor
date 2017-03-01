@@ -61,7 +61,7 @@ public class HaikuMasterTrainingDataPostProcessor {
 
 //        Word2VecDataPostProcessorImpl word2VecDataPostProcessor = new Word2VecDataPostProcessorImpl(word2VecDataMerger, word2vecSorter, trainingDataDatabaseAccessor);
 //        word2VecDataPostProcessor.postProcess();
-
+//
 //        TokenTagDataPostProcessorImpl tokenTagDataPostProcessor = new TokenTagDataPostProcessorImpl(tokenTagDataMerger, trainingDataDatabaseAccessor);
 //        tokenTagDataPostProcessor.postProcess();
     }

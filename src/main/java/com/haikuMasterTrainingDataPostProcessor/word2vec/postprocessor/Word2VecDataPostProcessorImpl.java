@@ -40,7 +40,7 @@ public class Word2VecDataPostProcessorImpl implements Word2VecDataPostProcessor,
         Map<String, List<Word2VecData>> sortedData = word2VecDataSorter.sort(mergedData);
         Runnable word2VecSortedDataWriter = new Word2VecSortedDataWriterImpl(sortedData);
         Future<?> submit = executor.submit(word2VecSortedDataWriter);
-        trainingDataDatabaseAccessor.clearWord2VecDatabase();
+//        trainingDataDatabaseAccessor.clearWord2VecDatabase();
         Iterator it = sortedData.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();

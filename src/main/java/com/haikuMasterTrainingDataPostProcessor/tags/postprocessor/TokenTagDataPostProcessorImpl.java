@@ -36,7 +36,7 @@ public class TokenTagDataPostProcessorImpl implements TokenTagDataPostProcessor,
         Runnable tokenTagDataMergedWriter = new TokenTagDataMergedWriterImpl(mergedData);
         Future<?> submit = executor.submit(tokenTagDataMergedWriter);
 
-        trainingDataDatabaseAccessor.clearTokenTagDataDatabase();
+//        trainingDataDatabaseAccessor.clearTokenTagDataDatabase();
 
         Iterator it = mergedData.entrySet().iterator();
         while (it.hasNext()) {
