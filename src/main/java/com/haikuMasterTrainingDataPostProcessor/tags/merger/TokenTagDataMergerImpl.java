@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class TokenTagDataMergerImpl implements TokenTagDataMerger {
 
-    private String inputFilePath = "C:\\Users\\Oliver\\Documents\\NlpTrainingData\\TokenTagData.txt";
+    private String inputFilePath = "C:\\Users\\Oliver\\Documents\\NlpTrainingData\\HaikuMasterTrainingData\\TokenTagData.txt";
 
     @Override
     public Map<String, TokenTagData> merge() throws IOException {
