@@ -15,10 +15,10 @@ public class Word2VecTrainingDataRowFactoryImpl implements Word2VecTrainingDataR
         word2VecTrainingDataRow.setKeyToken(split[0]);
         String[] vectors = split[1].split("@");
         for (String vector : vectors) {
-            String[] tokenVectorDataTmp = vector.split("%");
+//            String[] tokenVectorDataTmp = vector.split("%");
             Word2VecData word2VecData = new Word2VecData();
-            word2VecData.setToken(tokenVectorDataTmp[0]);
-            word2VecData.setVector(Double.valueOf(tokenVectorDataTmp[1]));
+            word2VecData.setToken(vector);
+//            word2VecData.setVector(Double.valueOf(tokenVectorDataTmp[1]));
             word2VecTrainingDataRow.getWord2VecDataList().add(word2VecData);
         }
         return word2VecTrainingDataRow;
