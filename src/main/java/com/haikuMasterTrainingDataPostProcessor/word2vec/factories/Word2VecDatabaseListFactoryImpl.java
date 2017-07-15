@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Word2VecDatabaseListFactoryImpl implements Word2VecDatabaseListFactory {
 
-    private final int VECTOR_SIZE = 500;
+    private final int VECTOR_SIZE = 200;
 
     @Override
     public List<String> create(List<Word2VecData> word2VecDatabaseList) {

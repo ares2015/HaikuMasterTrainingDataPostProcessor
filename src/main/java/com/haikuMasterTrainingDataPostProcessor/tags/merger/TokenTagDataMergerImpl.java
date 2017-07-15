@@ -23,18 +23,20 @@ public class TokenTagDataMergerImpl implements TokenTagDataMerger {
         String trainingDataRowAsString = br.readLine();
         while (trainingDataRowAsString != null) {
             String[] split = trainingDataRowAsString.split("#");
-            System.out.println(trainingDataRowAsString);
-            System.out.println(rowsCount);
-            String token = split[0];
-            String tag = split[1];
-            if (mergedData.containsKey(token)) {
-                convertStringTagToBoolean(mergedData.get(token), tag);
-            } else {
-                TokenTagData tokenTagData = new TokenTagData();
-                convertStringTagToBoolean(tokenTagData, tag);
-                tokenTagData.setToken(token);
-                mergedData.put(token, tokenTagData);
-                tokenTagData.getTags().add(tag);
+            if (split.length == 2) {
+                System.out.println(trainingDataRowAsString);
+                System.out.println(rowsCount);
+                String token = split[0];
+                String tag = split[1];
+                if (mergedData.containsKey(token)) {
+                    convertStringTagToBoolean(mergedData.get(token), tag);
+                } else {
+                    TokenTagData tokenTagData = new TokenTagData();
+                    convertStringTagToBoolean(tokenTagData, tag);
+                    tokenTagData.setToken(token);
+                    mergedData.put(token, tokenTagData);
+                    tokenTagData.getTags().add(tag);
+                }
             }
             rowsCount++;
             trainingDataRowAsString = br.readLine();
